@@ -1,0 +1,82 @@
+{
+  "users": [
+    {
+      "id": "usr_01",
+      "email": "alex.rivera@example.com",
+      "role": "candidate",
+      "preferences": {
+        "notifications": true,
+        "theme": "dark",
+        "learning_pace": "accelerated"
+      }
+    },
+    {
+      "id": "usr_02",
+      "email": "sarah.chen@example.com",
+      "role": "manager",
+      "preferences": {
+        "notifications": false,
+        "theme": "light"
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "user_id": "usr_01",
+      "resume_text": "Experienced Full Stack Developer building scalable web applications. Proficient in Python, Django, React, and SQL database architecture.",
+      "extracted_skills": {
+        "technical": [
+          {"skill": "Python", "confidence": 0.95},
+          {"skill": "React", "confidence": 0.90},
+          {"skill": "Django", "confidence": 0.85},
+          {"skill": "SQL", "confidence": 0.80}
+        ],
+        "soft": [
+          {"skill": "Communication", "confidence": 0.88},
+          {"skill": "Problem Solving", "confidence": 0.75}
+        ]
+      }
+    }
+  ],
+  "roadmaps": [
+    {
+      "id": "rm_01",
+      "user_id": "usr_01",
+      "role": "AI Integration Architect",
+      "readiness_score": 60,
+      "modules": [
+        {
+          "module_id": "GG-101",
+          "name": "Foundations of Agentic Systems",
+          "status": "COMPLETED",
+          "order": 1
+        },
+        {
+          "module_id": "GG-401",
+          "name": "O*NET Competency Standardization",
+          "status": "IN_PROGRESS",
+          "order": 2
+        },
+        {
+          "module_id": "GG-201",
+          "name": "Mastering LangGraph Orchestration",
+          "status": "LOCKED",
+          "order": 3
+        },
+        {
+          "module_id": "GG-301",
+          "name": "Vector Datasets & RAG Architectures",
+          "status": "LOCKED",
+          "order": 4
+        }
+      ]
+    }
+  ],
+  "modules_completed": [
+    {
+      "roadmap_id": "rm_01",
+      "module_id": "GG-101",
+      "completed_at": "2026-03-18T10:30:00Z"
+    }
+  ]
+}

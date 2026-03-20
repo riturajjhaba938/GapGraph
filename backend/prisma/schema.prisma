@@ -38,3 +38,43 @@ model AnalysisResult {
   reasoningTrace  Json     // { steps: [] }
   createdAt       DateTime @default(now())
 }
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  role        String
+  preferences Json?
+  profile     Profile?
+  roadmaps    Roadmap[]
+  createdAt   DateTime  @default(now())
+}
+
+model Profile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumeText      String?
+  extractedSkills Json
+  createdAt       DateTime @default(now())
+}
+
+model Roadmap {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role            String
+  readinessScore  Float
+  modules         Json
+  modulesCompleted ModuleCompleted[]
+  createdAt       DateTime @default(now())
+}
+
+model ModuleCompleted {
+  id          String   @id @default(uuid())
+  roadmapId   String
+  roadmap     Roadmap  @relation(fields: [roadmapId], references: [id], onDelete: Cascade)
+  moduleId    String
+  completedAt DateTime @default(now())
+
+  @@unique([roadmapId, moduleId])
+}
