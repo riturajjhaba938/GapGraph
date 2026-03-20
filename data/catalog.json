@@ -1,0 +1,162 @@
+[
+  {
+    "uuid": "c-001",
+    "title": "Linux Fundamentals",
+    "skills_taught": ["ONET-4.C.1.a", "ONET-4.C.1.b"],
+    "prerequisites": [],
+    "level": "beginner",
+    "duration_hours": 8
+  },
+  {
+    "uuid": "c-002",
+    "title": "Git & Version Control",
+    "skills_taught": ["ONET-2.B.3.a"],
+    "prerequisites": [],
+    "level": "beginner",
+    "duration_hours": 4
+  },
+  {
+    "uuid": "c-003",
+    "title": "Python Programming Fundamentals",
+    "skills_taught": ["ONET-2.B.3.b", "ONET-2.B.3.c"],
+    "prerequisites": [],
+    "level": "beginner",
+    "duration_hours": 20
+  },
+  {
+    "uuid": "c-004",
+    "title": "SQL & Relational Databases",
+    "skills_taught": ["ONET-2.B.3.d", "ONET-2.B.3.e"],
+    "prerequisites": [],
+    "level": "beginner",
+    "duration_hours": 12
+  },
+  {
+    "uuid": "c-005",
+    "title": "Containerization 101 — Docker",
+    "skills_taught": ["ONET-2.B.3.k"],
+    "prerequisites": ["c-001"],
+    "level": "intermediate",
+    "duration_hours": 10
+  },
+  {
+    "uuid": "c-006",
+    "title": "REST API Design with FastAPI",
+    "skills_taught": ["ONET-2.B.3.f", "ONET-2.B.3.g"],
+    "prerequisites": ["c-003"],
+    "level": "intermediate",
+    "duration_hours": 14
+  },
+  {
+    "uuid": "c-007",
+    "title": "Data Structures & Algorithms",
+    "skills_taught": ["ONET-2.B.3.h"],
+    "prerequisites": ["c-003"],
+    "level": "intermediate",
+    "duration_hours": 24
+  },
+  {
+    "uuid": "c-008",
+    "title": "Cloud Computing Basics (AWS/GCP)",
+    "skills_taught": ["ONET-4.A.1.b.1", "ONET-4.A.1.b.2"],
+    "prerequisites": ["c-001", "c-002"],
+    "level": "intermediate",
+    "duration_hours": 16
+  },
+  {
+    "uuid": "c-009",
+    "title": "Kubernetes & Container Orchestration",
+    "skills_taught": ["ONET-2.B.3.l"],
+    "prerequisites": ["c-005"],
+    "level": "advanced",
+    "duration_hours": 20
+  },
+  {
+    "uuid": "c-010",
+    "title": "Machine Learning Fundamentals",
+    "skills_taught": ["ONET-2.B.3.i", "ONET-2.B.3.j"],
+    "prerequisites": ["c-003", "c-004"],
+    "level": "intermediate",
+    "duration_hours": 30
+  },
+  {
+    "uuid": "c-011",
+    "title": "Deep Learning & Neural Networks",
+    "skills_taught": ["ONET-2.C.3.a", "ONET-2.C.3.b"],
+    "prerequisites": ["c-010"],
+    "level": "advanced",
+    "duration_hours": 40
+  },
+  {
+    "uuid": "c-012",
+    "title": "Data Engineering & ETL Pipelines",
+    "skills_taught": ["ONET-2.B.4.a", "ONET-2.B.4.b"],
+    "prerequisites": ["c-003", "c-004"],
+    "level": "intermediate",
+    "duration_hours": 18
+  },
+  {
+    "uuid": "c-013",
+    "title": "CI/CD & DevOps Practices",
+    "skills_taught": ["ONET-2.B.5.a", "ONET-2.B.5.b"],
+    "prerequisites": ["c-002", "c-005"],
+    "level": "intermediate",
+    "duration_hours": 14
+  },
+  {
+    "uuid": "c-014",
+    "title": "TypeScript & Modern JavaScript",
+    "skills_taught": ["ONET-2.B.3.m", "ONET-2.B.3.n"],
+    "prerequisites": [],
+    "level": "beginner",
+    "duration_hours": 16
+  },
+  {
+    "uuid": "c-015",
+    "title": "React Frontend Development",
+    "skills_taught": ["ONET-2.B.3.o"],
+    "prerequisites": ["c-014"],
+    "level": "intermediate",
+    "duration_hours": 20
+  },
+  {
+    "uuid": "c-016",
+    "title": "System Design & Distributed Systems",
+    "skills_taught": ["ONET-2.C.4.a", "ONET-2.C.4.b"],
+    "prerequisites": ["c-006", "c-008"],
+    "level": "advanced",
+    "duration_hours": 30
+  },
+  {
+    "uuid": "c-017",
+    "title": "Natural Language Processing (NLP)",
+    "skills_taught": ["ONET-2.C.3.c", "ONET-2.C.3.d"],
+    "prerequisites": ["c-010"],
+    "level": "advanced",
+    "duration_hours": 25
+  },
+  {
+    "uuid": "c-018",
+    "title": "Cybersecurity Fundamentals",
+    "skills_taught": ["ONET-2.B.6.a", "ONET-2.B.6.b"],
+    "prerequisites": ["c-001", "c-006"],
+    "level": "intermediate",
+    "duration_hours": 16
+  },
+  {
+    "uuid": "c-019",
+    "title": "Agile & Scrum Methodology",
+    "skills_taught": ["ONET-2.A.1.e"],
+    "prerequisites": [],
+    "level": "beginner",
+    "duration_hours": 4
+  },
+  {
+    "uuid": "c-020",
+    "title": "MLOps & Model Deployment",
+    "skills_taught": ["ONET-2.C.4.c"],
+    "prerequisites": ["c-010", "c-013"],
+    "level": "advanced",
+    "duration_hours": 20
+  }
+]

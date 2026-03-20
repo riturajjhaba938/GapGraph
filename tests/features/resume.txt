@@ -1,0 +1,24 @@
+John Doe
+Software Engineer | john.doe@email.com | github.com/johndoe
+
+EXPERIENCE
+
+Software Engineer — Startup Inc. (2021–2024, 3 years)
+- Developed Python microservices with FastAPI and Docker
+- Managed PostgreSQL databases and wrote complex SQL queries
+- Implemented CI/CD pipelines using GitHub Actions
+- Used Git for version control across all projects
+- Deployed services on AWS EC2 and S3
+
+Junior Developer — Agency XYZ (2020–2021, 1 year)
+- Built REST APIs in Python (Flask)
+- Wrote Python scripts for data analysis with pandas and numpy
+- Basic Linux command line usage
+
+EDUCATION
+B.Sc. Computer Science — State University (2020)
+
+SKILLS
+Python (3 years), Docker (2 years), SQL (3 years), FastAPI (2 years),
+Git (4 years), Linux (2 years), AWS (1 year), GitHub Actions (1 year),
+pandas (2 years), REST API (3 years)

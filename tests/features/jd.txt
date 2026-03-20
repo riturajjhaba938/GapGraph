@@ -1,0 +1,25 @@
+Senior ML Engineer — TechCorp AI Division
+
+We are looking for a Senior ML Engineer to join our growing team.
+
+REQUIRED SKILLS:
+- Python (5+ years, expert level)
+- Machine learning and scikit-learn (3+ years)
+- Deep learning / PyTorch or TensorFlow (2+ years)
+- Kubernetes and Docker (2+ years)
+- SQL and data engineering / ETL pipelines
+- MLOps and model deployment
+- REST API design
+- Linux and Bash scripting
+- Git and version control
+- CI/CD pipelines
+
+NICE TO HAVE:
+- Natural language processing (NLP)
+- System design and distributed systems
+- Cloud (AWS or GCP)
+
+About the role:
+You will build and deploy production ML models, design data pipelines,
+and collaborate with cross-functional teams. Experience with Agile/Scrum
+methodology is a plus.

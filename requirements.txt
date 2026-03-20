@@ -1,0 +1,15 @@
+fastapi>=0.110.0
+uvicorn[standard]
+langgraph>=0.1.0
+langchain-openai>=0.1.0
+langchain-core>=0.1.0
+langchain>=0.1.0
+networkx>=3.2
+pydantic>=2.0
+python-multipart
+pypdf2
+python-dotenv
+pytest>=7.0
+httpx
+pytest-asyncio
+openai>=1.0.0
