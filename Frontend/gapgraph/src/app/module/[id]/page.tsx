@@ -34,7 +34,7 @@ const priorityStyles: Record<string, { bg: string; text: string; label: string }
 export default function ModuleDetailPage() {
   const router = useRouter();
   const params = useParams();
-  const moduleId = Number(params.id);
+  const moduleId = String(params.id);
   const { completedModules, toggleModule, analysisResult } = useApp();
   const { showToast } = useToast();
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -46,25 +46,30 @@ export default function ModuleDetailPage() {
   
   const modulesDb = isDynamic ? rawModules.map((m: any, i: number) => ({
     ...m,
-    id: i + 1,
+    id: m.courseId || String(i + 1),
     hours: m.durationHours || 10,
+    title: m.title || "Untitled Course",
+    description: m.description || `Master the core concepts of ${m.title || "this topic"} and gain practical expertise through curated video resources and hands-on validation.`,
     priority: m.difficulty === "beginner" ? "low" : m.difficulty === "intermediate" ? "medium" : "critical",
-    category: m.skillsCovered[0] || "Foundations",
+    category: (m.skillsCovered && m.skillsCovered.length > 0) ? m.skillsCovered[0] : "Foundations",
     resources: m.resources || [],
-    quiz: { // Fake quiz for dynamic data
-      question: `Which of the following best describes the core utility of ${m.title}?`,
+    quiz: m.quiz || { // Fake quiz tailored to dynamic data
+      question: `How does mastering ${m.title} directly resolve your identified skill gap in ${(m.skillsCovered && m.skillsCovered.length > 0) ? m.skillsCovered[0] : "this domain"}?`,
       options: [
-        "It acts as a primary database for unstructured logs.",
-        "It orchestrates, scales, and manages containerized applications or workflows efficiently.",
+        "It acts as a primary database for unstructured logs without granular scaling.",
+        `It provides the necessary industry-standard capabilities required to operate as a production-grade engineer.`,
         "It is a UI library strictly used for building mobile interfaces quickly."
       ],
       correct: 1
     }
   })) : rawModules;
 
-  const mod = modulesDb.find((m: any) => m.id === moduleId) 
-    || modulesDb[moduleId - 1]  // Fallback: use index-based lookup
-    || staticModules.find((m: any) => m.id === moduleId); // Fallback: use static modules
+  const currentIndex = modulesDb.findIndex((m: any) => String(m.id) === String(moduleId));
+  // Fallback to static if not found or directly matched index
+  const mod = currentIndex >= 0 
+    ? modulesDb[currentIndex] 
+    : modulesDb[Number(moduleId) - 1] 
+      || staticModules.find((m: any) => String(m.id) === moduleId);
 
   if (!mod) {
     return (
@@ -349,16 +354,16 @@ export default function ModuleDetailPage() {
 
       {/* Navigation */}
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-6 text-on-surface-variant pb-24 border-t border-surface-container">
-        {mod.id > 1 ? (
-          <button onClick={() => router.push(`/module/${mod.id - 1}`)} className="flex items-center gap-2 hover:text-primary transition-colors group">
+        {currentIndex > 0 ? (
+          <button onClick={() => router.push(`/module/${modulesDb[currentIndex - 1].id}`)} className="flex items-center gap-2 hover:text-primary transition-colors group">
             <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-            <span className="text-sm font-bold uppercase tracking-wider hidden sm:inline">Previous: {modulesDb.find((m: any) => m.id === mod.id - 1)?.title || "Module"}</span>
+            <span className="text-sm font-bold uppercase tracking-wider hidden sm:inline">Previous: {modulesDb[currentIndex - 1]?.title || "Module"}</span>
             <span className="text-sm font-bold uppercase tracking-wider sm:hidden">Previous</span>
           </button>
         ) : <div />}
-        {mod.id < modulesDb.length ? (
-          <button onClick={() => router.push(`/module/${mod.id + 1}`)} className="flex items-center gap-2 hover:text-primary transition-colors group">
-            <span className="text-sm font-bold uppercase tracking-wider hidden sm:inline">Next: {modulesDb.find((m: any) => m.id === mod.id + 1)?.title || "Module"}</span>
+        {currentIndex < modulesDb.length - 1 ? (
+          <button onClick={() => router.push(`/module/${modulesDb[currentIndex + 1].id}`)} className="flex items-center gap-2 hover:text-primary transition-colors group">
+            <span className="text-sm font-bold uppercase tracking-wider hidden sm:inline">Next: {modulesDb[currentIndex + 1]?.title || "Module"}</span>
             <span className="text-sm font-bold uppercase tracking-wider sm:hidden">Next</span>
             <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </button>
