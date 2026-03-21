@@ -57,8 +57,9 @@ export class PlannerService {
         jdSkills: string[],
         tracer: ReasoningTracer
     ): string[] {
-        const resumeSet = new Set(resumeSkills.map((s) => s.toLowerCase().trim()));
+        const resumeSet = new Set(resumeSkills.filter(Boolean).map((s) => s.toLowerCase().trim()));
         const gaps = jdSkills
+            .filter(Boolean)
             .map((s) => s.toLowerCase().trim())
             .filter((s) => !resumeSet.has(s));
 

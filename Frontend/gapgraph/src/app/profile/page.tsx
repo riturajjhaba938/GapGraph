@@ -3,21 +3,23 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/lib/context";
-import { user, roleOptions } from "@/lib/data";
+import { user as mockUser, roleOptions } from "@/lib/data";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { isLoggedIn, logout, selectedRole, setSelectedRole } = useApp();
+  const { isLoggedIn, logout, selectedRole, setSelectedRole, profileImage, setProfileImage, user: contextUser } = useApp();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    name: user.name,
-    company: user.company,
-    role: selectedRole,
-    experience: user.experience,
-    email: "arjun@techcorp.in", 
-    phone: "+91 98765 43210"
+    name: contextUser?.name || mockUser.name,
+    company: "GapGraph User",
+    role: contextUser?.role || selectedRole,
+    experience: mockUser.experience,
+    email: contextUser?.email || "hello@gapgraph.io", 
+    phone: "Not provided"
   });
 
   // Redirect if not logged in
@@ -30,6 +32,14 @@ export default function ProfilePage() {
     e.preventDefault();
     setSelectedRole(formData.role);
     setIsEditing(false);
+  };
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setProfileImage(url);
+    }
   };
 
   const handleLogout = () => {
@@ -62,8 +72,21 @@ export default function ProfilePage() {
         <div className="md:col-span-1 space-y-6">
           <div className="bg-surface-container rounded-2xl p-6 relative overflow-hidden text-center flex flex-col items-center">
             <div className="absolute top-0 w-full h-24 bg-gradient-to-br from-primary-container/40 to-secondary/20" />
-            <div className="w-24 h-24 rounded-full bg-surface-container-highest border-4 border-surface-container z-10 flex items-center justify-center text-4xl font-extrabold text-primary-container shadow-xl mt-8">
-              {formData.name.split(" ").map(n => n[0]).join("")}
+            <div 
+              className={`w-24 h-24 rounded-full bg-surface-container-highest border-4 border-surface-container z-10 flex items-center justify-center text-4xl font-extrabold text-primary-container shadow-xl mt-8 relative overflow-hidden group ${isEditing ? 'cursor-pointer' : ''}`}
+              onClick={() => isEditing && fileInputRef.current?.click()}
+            >
+              <input type="file" ref={fileInputRef} hidden accept="image/*" onChange={handlePhotoUpload} />
+              {profileImage ? (
+                <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                formData.name.split(" ").map((n: string) => n[0]).join("")
+              )}
+              {isEditing && (
+                <div className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="material-symbols-outlined text-white text-xl">photo_camera</span>
+                </div>
+              )}
             </div>
             <h2 className="text-xl font-bold text-on-surface mt-4 relative z-10">{formData.name}</h2>
             <p className="text-secondary text-sm font-medium relative z-10">{formData.role}</p>

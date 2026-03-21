@@ -1,0 +1,4 @@
+{
+  "role": "assistant",
+  "content": "{\"technical\":[{\"skill\":\"react\",\"confidence\":1.0},{\"skill\":\"node.js\",\"confidence\":1.0},{\"skill\":\"next.js\",\"confidence\":1.0},{\"skill\":\"mongodb\",\"confidence\":1.0},{\"skill\":\"agile\",\"confidence\":0.8}],\"soft\":[{\"skill\":\"leadership\",\"confidence\":1.0}]}"
+}

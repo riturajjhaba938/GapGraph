@@ -13,8 +13,12 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { overallProgress, isLoggedIn } = useApp();
+  const { overallProgress, isLoggedIn, profileImage, user } = useApp();
   const readiness = 74 + Math.round(overallProgress * 0.26);
+
+  const avatarInitials = user?.name 
+    ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().substring(0, 2) 
+    : "ME";
 
   return (
     <>
@@ -62,16 +66,34 @@ export default function Navbar() {
                   Live Readiness: {readiness}%
                 </span>
               </div>
-              <Link href="/profile" className="w-9 h-9 rounded-full bg-primary-container hover:scale-105 transition-transform flex items-center justify-center text-sm font-bold text-on-primary-container shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-                AM
+              <Link href="/profile" className="w-9 h-9 rounded-full bg-primary-container hover:scale-105 transition-transform flex items-center justify-center text-sm font-bold text-on-primary-container shadow-[0_0_15px_rgba(124,58,237,0.3)] overflow-hidden">
+                {profileImage ? (
+                  <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  avatarInitials
+                )}
               </Link>
             </>
           ) : (
             <>
-              <Link href="/login" className="hidden md:inline-block text-on-surface-variant text-sm font-bold hover:text-primary transition-colors">
+              <Link
+                href="/login"
+                className={
+                  pathname === "/signup"
+                    ? "pulse-gradient px-5 py-2 rounded-full text-on-primary-container text-sm font-bold shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:scale-105 transition-transform"
+                    : "hidden md:inline-block text-on-surface-variant text-sm font-bold hover:text-primary transition-all active:text-primary active:drop-shadow-[0_0_12px_rgba(124,58,237,0.9)] focus:text-primary focus:drop-shadow-[0_0_12px_rgba(124,58,237,0.9)]"
+                }
+              >
                 Log In
               </Link>
-              <Link href="/signup" className="pulse-gradient px-5 py-2 rounded-full text-on-primary-container text-sm font-bold shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:scale-105 transition-transform">
+              <Link
+                href="/signup"
+                className={
+                  pathname !== "/signup"
+                    ? "pulse-gradient px-5 py-2 rounded-full text-on-primary-container text-sm font-bold shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:scale-105 transition-transform"
+                    : "hidden md:inline-block text-on-surface-variant text-sm font-bold hover:text-primary transition-all active:text-primary active:drop-shadow-[0_0_12px_rgba(124,58,237,0.9)] focus:text-primary focus:drop-shadow-[0_0_12px_rgba(124,58,237,0.9)]"
+                }
+              >
                 Sign Up
               </Link>
             </>

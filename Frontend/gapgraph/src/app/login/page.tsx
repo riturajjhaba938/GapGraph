@@ -12,15 +12,31 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate 2s network delay
-    setTimeout(() => {
-      login();
+
+    try {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.details ? `${data.error}: ${data.details}` : (data.error || "Login failed"));
+      }
+
+      login(data.user);
+      router.push("/upload");
+    } catch (error: any) {
+      alert(error.message);
+    } finally {
       setIsLoading(false);
-      router.push("/dashboard");
-    }, 2000);
+    }
   };
 
   return (
@@ -91,7 +107,7 @@ export default function LoginPage() {
 
         <div className="mt-8 text-center relative z-10">
           <p className="text-xs text-on-surface-variant">
-            Don&apos;t have an account?{" "}
+            Don't have an account?{" "}
             <button onClick={() => router.push("/signup")} className="text-secondary font-bold hover:underline">
               Sign Up
             </button>
